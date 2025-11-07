@@ -1,0 +1,25 @@
+main {
+  background-color: #ffee00;
+}
+
+#logo {
+  width: 200px;
+  left: 20px;
+  top: 20px;
+}
+
+#background {
+  background-image: url("img/paris.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}/*# sourceMappingURL=style.css.map */
