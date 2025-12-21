@@ -9,6 +9,7 @@ export class GameEngine {
     this.lastTime = 0;
     this.isRunning = false;
     this.frameRequest = null;
+    this.gametime = 30000;
     this.#init();
 
     this.manager; 
@@ -17,6 +18,7 @@ export class GameEngine {
   }
 
   #init() {
+    console.log(this.targetEl)
     this.manager = new Manager(this.targetEl);
     this.player = new Player({parent:this.targetEl, frameCount: 10, width:29, height:39});
     this.start();
@@ -51,7 +53,7 @@ export class GameEngine {
 
   update(deltaTime) {
     this.manager.update(deltaTime);
-    this.player.update(deltaTime);
+    this.player.update(deltaTime, this.manager.cars);
   }
 
   draw() {

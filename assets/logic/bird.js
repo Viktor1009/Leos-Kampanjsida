@@ -1,4 +1,4 @@
-export class Block {
+export class Bird {
   constructor(parent = document.body) {
     this.x = 60;
     this.y = Math.random() * (window.innerHeight - 60);
@@ -7,13 +7,12 @@ export class Block {
     parent.appendChild(this.div);
     this.parentSize = parent.getBoundingClientRect();
     console.log(this.parentSize.width);
-    this.speed = -20;
+    this.speed = -200;
   }
 
   resetPosition() {
     this.x = this.parentSize.width + 60;
     this.y = Math.random() * (this.parentSize.height - 60);
-    console.log(this.parentSize.he)
   }
 
   update(deltatime) {

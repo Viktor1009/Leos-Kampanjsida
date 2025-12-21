@@ -29,6 +29,13 @@ body {
     margin: 0;
 }
 
+#website {
+    background-color: #FFFFFF;
+    display: block;
+    width: 700px;
+    position: fixed;
+}
+
 #game-container {
   position: fixed;
   top: 0;
@@ -43,6 +50,9 @@ body {
 
 #player {
   pointer-events: auto;  
+  &.hit {
+    border: 1px solid yellow;;
+  }
 }
 
 .block {
@@ -51,6 +61,14 @@ body {
     width: 10px;
     height: 10px;
     background-color: red;
+}
+
+.car {
+    position: absolute;
+    display: block;
+    width: 59px;
+    height: 49px;
+    background-color: blue;
 }
 
 /* .scroll logo {
