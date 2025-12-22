@@ -1,10 +1,10 @@
-export class Car {
+export class Triangle {
   constructor(parent = document.body, speed) {
     this.parentSize = parent.getBoundingClientRect();
     this.x = this.parentSize.width + 60;
     this.y = 290;
     this.div = document.createElement("div");
-    this.div.classList.add("car");
+    this.div.classList.add("triangle");
     parent.appendChild(this.div);
 
     this.speed = speed;

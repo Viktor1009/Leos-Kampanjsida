@@ -33,6 +33,7 @@ export class Player {
         this.onGround = true;
         this.moving = false;
         this.lives = 3;
+        this.mouseDown = false;
 
         this.element.style.position = "absolute";
         this.element.style.width = `${width}px`;
@@ -44,45 +45,31 @@ export class Player {
         this.keys = {};
         document.addEventListener("keydown", (e) => (this.keys[e.code] = true));
         document.addEventListener("keyup", (e) => (this.keys[e.code] = false));
+        document.addEventListener("mousedown", () => {this.mouseDown = true;});
+        document.addEventListener("mouseup", () => {this.mouseDown = false;});
+
     }
 
-    update(deltaTime, cars) {
+    update(deltaTime, triangles) {
         this.xVelocity = 0;
         const containerWidth = this.parent.clientWidth;
         const containerHeight = this.parent.clientHeight;
 
-        if (this.keys["ArrowLeft"]) {
+        if (this.keys["ArrowLeft"] || this.keys["KeyA"]) {
             this.xVelocity = -this.speed
             this.moving = true;
         }
-        if (this.keys["ArrowRight"]) {
+        if (this.keys["ArrowRight"] || this.keys["KeyD"]) {
             this.xVelocity = this.speed
             this.moving = true;
         }
-        if (this.keys["Space"] && this.onGround) {
+        if ((this.keys["Space"] || this.mouseDown) && this.onGround) { 
             this.jump();
         }
+        
         this.x += this.xVelocity * deltaTime;
         this.yVelocity += this.gravity * deltaTime;
-        let y = this.y + (this.yVelocity * deltaTime);
-        cars.forEach((car) => {
-            if (this.x + this.width > car.x && this.x < car.x + 59) {
-                console.log("hit x")
-                if (!this.onGround) {
-                    if (y + this.height > car.y + 10 ) {
-                        this.jump();
-                    } 
-                }
-                else {
-                    this.x = car.x -this.width
-                }
-            }
-            
-        })
-         this.y = this.y + (this.yVelocity * deltaTime);
-
-        
-
+        this.y = this.y + (this.yVelocity * deltaTime);
 
         if (this.y >= this.groundY) {
             this.y = this.groundY;

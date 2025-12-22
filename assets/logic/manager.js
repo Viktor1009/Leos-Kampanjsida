@@ -1,57 +1,45 @@
-import { Bird } from "./bird.js";
-import { Car } from "./car.js";
+import { Triangle } from "./triangle.js";
 
 export class Manager {
     constructor(parent) {
         this.amount = 1;
-        this.cars = [];
-        this.birds = [];
+        this.triangles = [];
         this.parent = parent;
         this.#init();
         this.timer = 0;
-        this.newCar = 2;
+        this.newtriangle = 2;
     }
 
     #init(){
-        let car = new Car(this.parent, -200);
-        this.cars.push(car);
-        let bird = new Bird(this.parent);
-        this.birds.push(bird)
+        let triangle = new Triangle(this.parent, -200);
+        this.triangles.push(triangle);
     }
 
     update(deltaTime){
         let newArr = [];
         this.timer += deltaTime;
-        if(this.timer > this.newCar){
-            let car = new Car(this.parent, Math.random()*-300);
-            this.cars.push(car);
+        if(this.timer > this.newtriangle){
+            let triangle = new Triangle(this.parent, Math.random()*-300);
+            this.triangles.push(triangle);
             this.timer = 0;
         }
 
-        for(let x = 0; x < this.cars.length; x++){
-            this.cars[x].update(deltaTime);
-            if(!this.cars[x].gone){
-                newArr.push(this.cars[x]);
+        for(let x = 0; x < this.triangles.length; x++){
+            this.triangles[x].update(deltaTime);
+            if(!this.triangles[x].gone){
+                newArr.push(this.triangles[x]);
             }else {
-                this.cars[x].div.remove();
+                this.triangles[x].div.remove();
             }
         }
-        this.cars = newArr;
+        this.triangles = newArr;
 
 
-        for(let x = 0; x < this.birds.length; x++){
-            this.birds[x].update(deltaTime);
-            
-        }
+        
     }
     draw(deltaTime){
-        for(let x = 0; x < this.cars.length; x++){
-            this.cars[x].draw();
-            
-        }
-        for(let x = 0; x < this.birds.length; x++){
-            this.birds[x].draw();
-            
+        for(let x = 0; x < this.triangles.length; x++){
+            this.triangles[x].draw();
         }
     }
 }

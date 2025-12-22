@@ -20,7 +20,7 @@ export class GameEngine {
   #init() {
     console.log(this.targetEl)
     this.manager = new Manager(this.targetEl);
-    this.player = new Player({parent:this.targetEl, frameCount: 10, width:29, height:39});
+    this.player = new Player({parent:this.targetEl, frameCount: 10, width:50, height:50});
     this.start();
   }
 
@@ -53,7 +53,7 @@ export class GameEngine {
 
   update(deltaTime) {
     this.manager.update(deltaTime);
-    this.player.update(deltaTime, this.manager.cars);
+    this.player.update(deltaTime, this.manager.triangles);
   }
 
   draw() {

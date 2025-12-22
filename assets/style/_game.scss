@@ -63,12 +63,14 @@ body {
     background-color: red;
 }
 
-.car {
+.triangle {
     position: absolute;
     display: block;
-    width: 59px;
-    height: 49px;
-    background-color: blue;
+    width: 0px;
+    height: 0px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 35px solid red;
 }
 
 /* .scroll logo {
