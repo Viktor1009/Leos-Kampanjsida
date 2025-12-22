@@ -50,7 +50,7 @@ export class Player {
 
     }
 
-    update(deltaTime, triangles) {
+    update(deltaTime) {
         this.xVelocity = 0;
         const containerWidth = this.parent.clientWidth;
         const containerHeight = this.parent.clientHeight;
