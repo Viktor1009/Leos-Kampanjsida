@@ -53,7 +53,7 @@ export class GameEngine {
 
   update(deltaTime) {
     this.manager.update(deltaTime);
-    this.player.update(deltaTime, this.manager.triangles);
+    this.player.update(deltaTime);
   }
 
   draw() {

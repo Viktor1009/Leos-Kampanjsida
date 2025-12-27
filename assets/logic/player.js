@@ -4,7 +4,7 @@ export class Player {
         width,
         height,
         frameCount,
-        frameSpeed = 24,
+        frameSpeed = 12,
     }) {
 
         this.parent = parent;
@@ -65,6 +65,11 @@ export class Player {
         }
         if ((this.keys["Space"] || this.mouseDown) && this.onGround) { 
             this.jump();
+            /**ump(){
+        this.yVelocity = this.jumpForce;
+        this.onGround = false;
+        this.moving = true;
+    } */
         }
         
         this.x += this.xVelocity * deltaTime;
@@ -87,10 +92,13 @@ export class Player {
 
 
         this.frameTimer += deltaTime;
-        if (this.moving == true) {
+        if (this.moving) {
             if (this.frameTimer >= this.frameDuration) {
                 this.frameTimer = 0;
                 this.currentFrame = (this.currentFrame + 1) % this.frameCount;
+                if(this.currentFrame = 0){
+                    this.currentFrame = 1;
+                }
             }
         }
 
@@ -115,7 +123,7 @@ export class Player {
         this.moving = true;
     }
     draw() {
-        this.element.style.backgroundPositionX =
+        this.element.style.backgroundPositionX = 
             this.currentFrame * (this.frameWidth + this.frameDistance) * -1 + "px";
     }
 }
