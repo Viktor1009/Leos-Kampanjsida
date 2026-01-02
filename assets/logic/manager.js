@@ -1,17 +1,19 @@
 import { Triangle } from "./triangle.js";
 
 export class Manager {
-    constructor(parent) {
+    constructor(parent, groundY) {
         this.amount = 1;
         this.triangles = [];
         this.parent = parent;
-        this.#init();
+        this.groundY = groundY
         this.timer = 0;
         this.newtriangle = 2;
+
+        this.#init();
     }
 
     #init(){
-        let triangle = new Triangle(this.parent, -200);
+        let triangle = new Triangle(this.parent, -200, this.groundY);
         this.triangles.push(triangle);
     }
 
@@ -19,7 +21,7 @@ export class Manager {
         let newArr = [];
         this.timer += deltaTime;
         if(this.timer > this.newtriangle){
-            let triangle = new Triangle(this.parent, Math.random()*-300);
+            let triangle = new Triangle(this.parent, -200, this.groundY);
             this.triangles.push(triangle);
             this.timer = 0;
         }

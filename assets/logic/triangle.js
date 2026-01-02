@@ -1,8 +1,15 @@
 export class Triangle {
-  constructor(parent = document.body, speed) {
+  constructor(
+    parent = document.body, 
+    speed,
+    groundY
+  ) {
     this.parentSize = parent.getBoundingClientRect();
-    this.x = this.parentSize.width + 60;
-    this.y = 290;
+    this.height = 40;
+    this.width = 50;
+    this.x = this.parentSize.width + this.width;
+    this.groundY = groundY - this.height;
+    this.y = this.groundY;
     this.div = document.createElement("div");
     this.div.classList.add("triangle");
     parent.appendChild(this.div);
@@ -12,12 +19,12 @@ export class Triangle {
   }
 
   resetPosition() {
-    this.x = this.parentSize.width + 60;
+    this.x = this.parentSize.width + this.width;
   }
 
   update(deltatime) {
     this.x += this.speed * deltatime;
-    if (this.x < -60) {
+    if (this.x < -50) {
       this.gone = true;
     }
   }

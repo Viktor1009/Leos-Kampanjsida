@@ -18,9 +18,17 @@ export class GameEngine {
   }
 
   #init() {
-    console.log(this.targetEl)
-    this.manager = new Manager(this.targetEl);
-    this.player = new Player({parent:this.targetEl, frameCount: 10, width:50, height:50});
+    this.groundPercent = 0.8;
+    this.groundY = this.targetEl.clientHeight * this.groundPercent;
+    
+    this.manager = new Manager(this.targetEl, this.groundY);
+    this.player = new Player({
+      parent: this.targetEl, 
+      frameCount: 10, 
+      width: 50, 
+      height: 50, 
+      groundY: this.groundY
+    });
     this.start();
   }
 
@@ -53,7 +61,7 @@ export class GameEngine {
 
   update(deltaTime) {
     this.manager.update(deltaTime);
-    this.player.update(deltaTime);
+    this.player.update(deltaTime, this.manager.triangles);
   }
 
   draw() {

@@ -4,7 +4,9 @@ export class Player {
         width,
         height,
         frameCount,
+        groundY,
         frameSpeed = 12,
+        
     }) {
 
         this.parent = parent;
@@ -21,18 +23,14 @@ export class Player {
         this.frameDistance = 91;
         this.currentFrame = 0;
         this.frameTimer = 0;
-        console.log(parent);
+
         this.x = 100;
-        this.y = 300;
+        this.y = 300 + this.height;
         this.yVelocity = 0;
-        this.xVelocity = 0;
-        this.speed = 200;
-        this.gravity = 800;
-        this.jumpForce = -400;
-        this.groundY = 300;
+        this.gravity = 700;
+        this.jumpForce = -500;
+        this.groundY = groundY - this.height;
         this.onGround = true;
-        this.moving = false;
-        this.lives = 3;
         this.mouseDown = false;
 
         this.element.style.position = "absolute";
@@ -50,19 +48,11 @@ export class Player {
 
     }
 
-    update(deltaTime) {
+    update(deltaTime, triangles) {
         this.xVelocity = 0;
         const containerWidth = this.parent.clientWidth;
         const containerHeight = this.parent.clientHeight;
 
-        if (this.keys["ArrowLeft"] || this.keys["KeyA"]) {
-            this.xVelocity = -this.speed
-            this.moving = true;
-        }
-        if (this.keys["ArrowRight"] || this.keys["KeyD"]) {
-            this.xVelocity = this.speed
-            this.moving = true;
-        }
         if ((this.keys["Space"] || this.mouseDown) && this.onGround) { 
             this.jump();
             /**ump(){
@@ -71,6 +61,16 @@ export class Player {
         this.moving = true;
     } */
         }
+        this.x += this.xVelocity * deltaTime;
+        this.yVelocity += this.gravity * deltaTime;
+        let y = this.y + (this.yVelocity * deltaTime);
+        triangles.forEach((triangle) => {
+            if (this.x + this.width > triangle.x && this.x < triangle.x + 40) {
+                this.x = triangle.x -this.width
+            }
+            
+        })
+        this.y = this.y + (this.yVelocity * deltaTime);
         
         this.x += this.xVelocity * deltaTime;
         this.yVelocity += this.gravity * deltaTime;
