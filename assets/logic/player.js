@@ -12,7 +12,7 @@ export class Player {
         this.parent = parent;
 
         this.element = document.createElement("div");
-        this.element.id = "player";
+        this.element.id = "OOPplayer";
         parent.appendChild(this.element);
         this.width = width;
         this.height = height;
@@ -24,21 +24,21 @@ export class Player {
         this.currentFrame = 0;
         this.frameTimer = 0;
 
-        this.x = 100;
-        this.y = 300 + this.height;
-        this.yVelocity = 0;
-        this.gravity = 700;
-        this.jumpForce = -500;
         this.groundY = groundY - this.height;
+        this.x = 200;
+        this.y = this.groundY + this.height;
+        this.yVelocity = 0;
+        this.gravity = 220;
+        this.jumpForce = -200;
+        
         this.onGround = true;
         this.mouseDown = false;
+        this.isHit = false;
 
         this.element.style.position = "absolute";
         this.element.style.width = `${width}px`;
         this.element.style.height = `${height}px`;
         this.element.style.backgroundImage = "url('/assets/img/logo.png')";
-        this.element.style.backgroundRepeat = "no-repeat";
-        this.element.style.backgroundPosition = "0px 0px";
 
         this.keys = {};
         document.addEventListener("keydown", (e) => (this.keys[e.code] = true));
@@ -61,12 +61,19 @@ export class Player {
         this.moving = true;
     } */
         }
-        this.x += this.xVelocity * deltaTime;
+
+        this.x += this.xVelocity * deltaTime; // collision
         this.yVelocity += this.gravity * deltaTime;
         let y = this.y + (this.yVelocity * deltaTime);
         triangles.forEach((triangle) => {
-            if (this.x + this.width > triangle.x && this.x < triangle.x + 40) {
-                this.x = triangle.x -this.width
+            if (
+                this.x + this.width > triangle.x 
+                && this.x < triangle.x + triangle.width 
+                && this.onGround 
+                && !this.isHit
+            ) {
+                console.log("died")
+                this.isHit = true;
             }
             
         })

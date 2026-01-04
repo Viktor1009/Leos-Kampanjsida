@@ -9,12 +9,13 @@
 <body>
   <div id="background"></div>
   <div id="website">
-    <div id="game-container">
+    <div id="OOPgame-container">
+      <div id="OOPline"></div>
 
       <script type="module">
         import { GameEngine } from "/assets/logic/game.js";
 
-        const container = document.getElementById("game-container");
+        const container = document.getElementById("OOPgame-container");
         const game = new GameEngine({
           targetFps: 60,
           targetEl: container

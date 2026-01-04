@@ -11,7 +11,7 @@ export class Triangle {
     this.groundY = groundY - this.height;
     this.y = this.groundY;
     this.div = document.createElement("div");
-    this.div.classList.add("triangle");
+    this.div.classList.add("OOPtriangle");
     parent.appendChild(this.div);
 
     this.speed = speed;

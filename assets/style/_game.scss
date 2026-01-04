@@ -36,19 +36,19 @@ body {
     position: fixed;
 }
 
-#game-container {
+#OOPgame-container {
   position: fixed;
   top: 0;
   left: 0;
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
-  background-color: aqua;
+  background-image: url("../img/paris.png");
 }
 
-#player {
+#OOPplayer {
   pointer-events: auto;  
   &.hit {
     border: 1px solid yellow;;
@@ -63,7 +63,7 @@ body {
     background-color: red;
 }
 
-.triangle {
+.OOPtriangle {
     position: absolute;
     display: block;
     width: 0px;
@@ -73,6 +73,11 @@ body {
     border-bottom: 40px solid red;
 }
 
-/* .scroll logo {
-    display: inline-flex;
-    animation: circle 30s linear infinite; */
+#OOPline{
+    position: absolute;
+    top: 80%;
+    width: 100%;
+    height: 20%;
+    border: 2px solid black;
+    background-color: black;
+}
